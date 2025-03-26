@@ -1,0 +1,16 @@
+##
+
+อย่างแรก tailwind เปลี่ยนการติดตั้งแล้ว ไปดูใน get start vite ได้
+
+nominatim.org/release-docs/develop/api/Search/
+
+`https://nominatim.openstreetma
+p.org/search?q=${term}&format=json
+&addressdetails=1&layer=address&limit=5`
+
+## เพิ่มเติม
+.env ไฟล์สำหรับเก็บคีย์ แล้วก็เวลาอัพขึ้น github อย่าลืมไปจัดการ gitignore ด้วยจะได้ไม่อัพขึ้น
+
+url เขียนติดนะ ถ้าจะยกบรรทัดมันมีวิธีอยู่อีกแบบ
+
+น่าจะต้องแก้ตรงการเขียน interface ของ Search dataType มันแปลกๆ
