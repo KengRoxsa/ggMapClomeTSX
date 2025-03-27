@@ -2,8 +2,8 @@ import type { Place } from "./Place";
 
 interface SearchResponse {
   display_name: string; // ชื่อสถานที่เต็ม
-  lat: number; // ละติจูด
-  lon: number; // ลองจิจูด
+  lat: string; // ละติจูด
+  lon: string; // ลองจิจูด
   place_id: number; // ID ของสถานที่
 }
 

@@ -4,7 +4,6 @@ import { search } from "../api/Search";
 
 interface LocationSearchProps {
     onPlaceClick: (place: Place) => void;
-    // จะไม่รีเทิร์นค่าออกมา void
 }
 
 function LocationSearch({ onPlaceClick }: LocationSearchProps) {
@@ -14,46 +13,40 @@ function LocationSearch({ onPlaceClick }: LocationSearchProps) {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const result = await search(term);
-        if (result) {
-            setPlaces(result);
-        } else {
-            setPlaces([]); // ถ้าไม่มีผลลัพธ์ ให้ตั้งเป็นอาร์เรย์ว่าง
-        }
+        setPlaces(result || []);
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label className="font-bold" htmlFor="term">
+        <div className="p-4 bg-white rounded-lg shadow-md">
+            <form onSubmit={handleSubmit} className="space-y-3">
+                <label className="font-bold block" htmlFor="term">
                     Search Here
                 </label>
                 <input
                     type="text"
-                    className="border border-gray-400 rounded-md shadow-sm focus:border-indigo-500 px-4 py-2 w-full"
+                    className="border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 px-4 py-2 w-full"
                     id="term"
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
                 />
             </form>
 
-            <h1 className="font-bold mt-6">Found Location</h1>
+            <h1 className="font-bold mt-4">Found Location</h1>
 
-            {/* ใช้ grid layout ให้ตรงกับจำนวนคอลัมน์ */}
-            <div className="grid grid-cols-[1fr_40px] gap-2 mt-2 items-center">
-                {places.map((place) => {
-                    return (
-                        <Fragment key={place.id}>
-                            <p className="text-sm">{place.name}</p>
+            <div className="mt-3 divide-y divide-gray-300">
+                {places.map((place) => (
+                    <Fragment key={place.id}>
+                        <div className="flex justify-between items-center py-7">
+                            <p className="text-m">{place.name}</p>
                             <button
-                                className="bg-blue-500 text-xs text-white font-bold py-1 px-2 rounded"
+                                className="bg-blue-500 text-xs text-white font-bold py-1 px-2 rounded hover:bg-blue-600 transition"
                                 onClick={() => onPlaceClick(place)}
                             >
                                 Select
                             </button>
-                            <div className="border-b w-full col-span-2"></div>
-                        </Fragment>
-                    );
-                })}
+                        </div>
+                    </Fragment>
+                ))}
             </div>
         </div>
     );
