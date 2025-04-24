@@ -1,5 +1,5 @@
 import type { Place } from "../api/Place";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 
