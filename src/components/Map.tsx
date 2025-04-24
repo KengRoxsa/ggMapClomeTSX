@@ -13,7 +13,7 @@ function MapController({ place }: { place: Place | null }) {
 
     useEffect(() => {
         if (place) {
-            map.flyTo([parseFloat(place.latitude), parseFloat(place.longitude)], 12);
+            map.flyTo([place.latitude, place.longitude], 12);
         }
     }, [place, map]);
 
@@ -24,7 +24,7 @@ function Map({ place }: MapProps) {
     return (
         <div className="h-full w-full rounded-lg shadow-md overflow-hidden">
             <MapContainer
-                center={place ? [parseFloat(place.latitude), parseFloat(place.longitude)] : [51.505, -0.09]}
+                center={place ? [place.latitude, place.longitude] : [51.505, -0.09]}
                 zoom={12}
                 scrollWheelZoom
                 className="h-full w-full"
@@ -32,7 +32,7 @@ function Map({ place }: MapProps) {
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
                 {place && (
-                    <Marker position={[parseFloat(place.latitude), parseFloat(place.longitude)]}>
+                    <Marker position={[place.latitude, place.longitude]}>
                         <Popup>{place.name}</Popup>
                     </Marker>
                 )}
